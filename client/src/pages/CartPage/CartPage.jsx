@@ -8,35 +8,46 @@ function CartPage() {
   const cartDetail = useSelector(state => state.user?.cartDetail);
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
+
   useEffect(() => {
     let cartItemIds = []
-
-    if (userData?.cart && userData.cart.length > 0) {
-      userData.cart.forEach(item => {
-        cartItemIds.push(item.id);
-      })
-
-      const body = {
-        cartItemIds,
-        userCart: userData.cart
+    setTimeout(()=>{
+      if(userData!=null && userData!=undefined){
+        if (userData?.cart && userData.cart.length > 0) {
+          userData.cart.forEach(item => {
+            cartItemIds.push(item.id);
+          })
+    
+          const body = {
+            cartItemIds,
+            userCart: userData.cart
+          }
+    
+          dispatch(getCartItems(body))
+        }
       }
-
-      dispatch(getCartItems(body))
-    }
+    },1)
 
   }, [dispatch, userData])
 
   useEffect(() => {
-
-    calculateTotal(cartDetail)
-
+    setTimeout(()=>{
+      if (cartDetail === null || cartDetail === undefined) {
+        console.log("비워지다 cartDetail이: ", cartDetail);
+        return null;
+      } else {
+        calculateTotal(cartDetail);
+      }  
+    },1)  
   }, [cartDetail])
 
 
   const calculateTotal = (cartItems) => {
     let total = 0;
-    cartItems.map(item => total += item.price * item.quantity)
-    setTotal(total);
+    if (cartItems && cartItems.length > 0) {
+      cartItems.map((item) => (total += item.price * item.quantity));
+      setTotal(total);
+    }
   }
 
   const handleRemoveCartItem = (productId) => {
@@ -53,7 +64,7 @@ function CartPage() {
         <h2 className='text-2xl'>나의 장바구니</h2>
       </div>
 
-      {cartDetail?.length > 0 ?
+      {cartDetail!=undefined && cartDetail?.length > 0 ?
         <>
 
           <CartTable products={cartDetail} onRemoveItem={handleRemoveCartItem} />

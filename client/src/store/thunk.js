@@ -77,10 +77,11 @@ export const getCartItems = createAsyncThunk(
   "user/getCartItems",
   async ({ cartItemIds, userCart }, thunkAPI) => {
       try {
+          console.log("respose 선언 전: ", cartItemIds, userCart);
           const response = await axiosInstance.get(
               `/products/${cartItemIds}?type=array`);
 
-
+          console.log("respose 선언 후: ", response);
           userCart.forEach(cartItem => {
               response.data.forEach((productDetail, index) => {
                   if (cartItem.id === productDetail._id) {
@@ -90,7 +91,7 @@ export const getCartItems = createAsyncThunk(
           })
 
 
-
+          console.log("그 전: ", response);
           return response.data;
       } catch (error) {
           console.log(error);

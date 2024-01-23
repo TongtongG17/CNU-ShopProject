@@ -38,10 +38,13 @@ const LandingPage = () => {
 
       if (loadMore) {
         setProducts([...products, ...response.data.products])
+        console.log("하나: ", response);
       } else {
         setProducts(response.data.products);
+        console.log("둘: ", response);
       }
       setHasMore(response.data.hasMore);
+      console.log("셋: ", response);
     } catch (error) {
       console.error(error);
     }

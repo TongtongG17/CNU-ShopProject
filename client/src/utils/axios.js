@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.PROD ?
-        '' : 'http://localhost:8080' //백엔드 포트.
+    import.meta.env.VITE_SERVER_URL : 'http://localhost:8080' //백엔드 포트.
+    //'http://localhost:8080' : import.meta.env.VITE_SERVER_URL //백엔드 포트.
 })
 
 //요청 보내기 전.

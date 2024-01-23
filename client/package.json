@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
-    "build": "vite build",
+    "build": "vite build && echo '/* /index.html 200' | cat > dist/_redirects",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -41,5 +41,7 @@
     "vite": "^5.0.0",
     "vite-plugin-checker": "^0.6.2",
     "vite-plugin-eslint": "^1.8.1"
-  }
+  },
+  "proxy": "https://port-0-shop-server-o0ynn2alrpydvm7.sel5.cloudtype.app/",
+  "homepage": "https://port-0-shop-server-o0ynn2alrpydvm7.sel5.cloudtype.app/"
 }
