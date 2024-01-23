@@ -1,3 +1,7 @@
+# 호스팅
+- client: [네트리파이](https://cnu-shopproject.netlify.app)
+- server: express로 제작한 코드이기에 클라우드타입에 배포하고 있습니다.
+
 ## 2024-01-23 express 및 react 버전 업그레이드
 
 기존에 쓰였던 express와 react의 버전이 낮아서 업그레이드를 하고 사이트를 리뉴얼 하였습니다.
